@@ -1,3 +1,5 @@
+import * as actions from './actionTypes';
+
 const initialState = [];
 let lastId = 0;
 
@@ -5,7 +7,7 @@ let lastId = 0;
 // When the app starts running, redux calls reducer for setup the store
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case 'ADD_TASK':
+    case actions.ADD_TASK:
       return [
         ...state,
         {
@@ -14,7 +16,7 @@ export default function reducer(state = initialState, action) {
           isComplete: false,
         },
       ];
-    case 'DELETE_TASK':
+    case actions.DELETE_TASK:
       return state.filter(task => task.id !== action.payload.id);
     default:
       return state;
