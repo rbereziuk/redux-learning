@@ -1,29 +1,14 @@
 import store from './store';
-import * as actions from './actionTypes';
+import { addTask, deleteTask } from './actions';
 
 const unsubscribe = store.subscribe(() => {
   console.log('Store changed 🗂', store.getState());
 });
 
-store.dispatch({
-  type: actions.ADD_TASK,
-  payload: {
-    description: 'Clean the room',
-  },
-});
+store.dispatch(addTask('Clean the room'));
 
-store.dispatch({
-  type: actions.ADD_TASK,
-  payload: {
-    description: 'Read the book',
-  },
-});
+store.dispatch(addTask('Read a book'));
 
-store.dispatch({
-  type: actions.DELETE_TASK,
-  payload: {
-    id: 1,
-  },
-});
+store.dispatch(deleteTask(1));
 
 unsubscribe();
