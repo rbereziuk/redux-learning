@@ -1,6 +1,8 @@
 import store from './store';
 
-console.log(store.getState());
+const unsubscribe = store.subscribe(() => {
+  console.log('Store changed 🗂', store.getState());
+});
 
 store.dispatch({
   type: 'ADD_TASK',
@@ -23,4 +25,4 @@ store.dispatch({
   },
 });
 
-console.log(store.getState());
+unsubscribe();
