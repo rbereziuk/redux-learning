@@ -7,6 +7,13 @@ export const addTask = description => ({
   },
 });
 
+export const completeTask = id => ({
+  type: actions.COMPLETE_TASK,
+  payload: {
+    id,
+  },
+});
+
 export const deleteTask = id => ({
   type: actions.DELETE_TASK,
   payload: {

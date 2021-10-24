@@ -16,6 +16,11 @@ export default function reducer(state = initialState, action) {
           isComplete: false,
         },
       ];
+    case actions.COMPLETE_TASK:
+      return state.map(task =>
+        task.id === action.payload.id ? { ...task, isComplete: true } : task
+      );
+
     case actions.DELETE_TASK:
       return state.filter(task => task.id !== action.payload.id);
     default:
