@@ -3,7 +3,7 @@ let lastId = 0;
 
 // Reducer - pure function
 // When the app starts running, redux calls reducer for setup the store
-function reducer(state = initialState, action) {
+export default function reducer(state = initialState, action) {
   switch (action.type) {
     case 'ADD_TASK':
       return [
