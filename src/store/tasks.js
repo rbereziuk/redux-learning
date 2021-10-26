@@ -1,5 +1,31 @@
-import * as actions from './actionTypes';
+// --- Action types ---
+const ADD_TASK = 'ADD_TASK';
+const COMPLETE_TASK = 'COMPLETE_TASK';
+const DELETE_TASK = 'DELETE_TASK';
 
+// --- Actions ---
+export const addTask = description => ({
+  type: ADD_TASK,
+  payload: {
+    description,
+  },
+});
+
+export const completeTask = id => ({
+  type: COMPLETE_TASK,
+  payload: {
+    id,
+  },
+});
+
+export const deleteTask = id => ({
+  type: DELETE_TASK,
+  payload: {
+    id,
+  },
+});
+
+// --- Reducer ---
 const initialState = [];
 let lastId = 0;
 
@@ -7,7 +33,7 @@ let lastId = 0;
 // When the app starts running, redux calls reducer for setup the store
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case actions.ADD_TASK:
+    case ADD_TASK:
       return [
         ...state,
         {
@@ -16,12 +42,12 @@ export default function reducer(state = initialState, action) {
           isComplete: false,
         },
       ];
-    case actions.COMPLETE_TASK:
+    case COMPLETE_TASK:
       return state.map(task =>
         task.id === action.payload.id ? { ...task, isComplete: true } : task
       );
 
-    case actions.DELETE_TASK:
+    case DELETE_TASK:
       return state.filter(task => task.id !== action.payload.id);
     default:
       return state;
