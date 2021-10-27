@@ -1,29 +1,9 @@
-// --- Action types ---
-const ADD_TASK = 'ADD_TASK';
-const COMPLETE_TASK = 'COMPLETE_TASK';
-const DELETE_TASK = 'DELETE_TASK';
+import { createAction } from '@reduxjs/toolkit';
 
-// --- Actions ---
-export const addTask = description => ({
-  type: ADD_TASK,
-  payload: {
-    description,
-  },
-});
-
-export const completeTask = id => ({
-  type: COMPLETE_TASK,
-  payload: {
-    id,
-  },
-});
-
-export const deleteTask = id => ({
-  type: DELETE_TASK,
-  payload: {
-    id,
-  },
-});
+// Action creators
+export const addTask = createAction('ADD_TASK');
+export const completeTask = createAction('COMPLETE_TASK');
+export const deleteTask = createAction('DELETE_TASK');
 
 // --- Reducer ---
 const initialState = [];
@@ -33,7 +13,7 @@ let lastId = 0;
 // When the app starts running, redux calls reducer for setup the store
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case ADD_TASK:
+    case addTask.type:
       return [
         ...state,
         {
@@ -42,12 +22,12 @@ export default function reducer(state = initialState, action) {
           isComplete: false,
         },
       ];
-    case COMPLETE_TASK:
+    case completeTask.type:
       return state.map(task =>
         task.id === action.payload.id ? { ...task, isComplete: true } : task
       );
 
-    case DELETE_TASK:
+    case deleteTask.type:
       return state.filter(task => task.id !== action.payload.id);
     default:
       return state;
