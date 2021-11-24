@@ -1,9 +1,12 @@
 import store from './store';
 import { taskAdded, taskCompleted, taskDeleted } from './store/tasks';
+import { projectAdded } from './store/projects';
 
 const unsubscribe = store.subscribe(() => {
   console.log('Store changed 🗂', store.getState());
 });
+
+store.dispatch(projectAdded({ name: 'Nutrition' }));
 
 store.dispatch(taskAdded({ description: 'Clean the room' }));
 store.dispatch(taskAdded({ description: 'Read a book' }));
