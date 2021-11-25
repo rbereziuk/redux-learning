@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { createSelector } from 'reselect';
 
 // --- Reducer ---
 let lastId = 0;
@@ -27,7 +28,10 @@ const slice = createSlice({
   },
 });
 
+export const getUncompletedTasks = createSelector(
+  state => state.entities.tasks,
+  tasks => tasks.filter(task => task.isComplete !== true)
+);
+
 export const { taskAdded, taskCompleted, taskDeleted } = slice.actions;
 export default slice.reducer;
-
-console.log(slice);
